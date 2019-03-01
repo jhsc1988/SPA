@@ -23,12 +23,6 @@ void jedan_pointer(int * A, int * B, const int * n) {
 
 void pointer_na_pointer(int * A, int * B, const int * n) {
 
-//alokacija pomocu pointera na pointer (primjer je za n = 2)
-// |_|_|_|_|			|_|_|_|_| 
-//	|				|
-//	|_>	|_|_|_|_| 		|_> 	|_|_|_|_| 
-//
-
 	int **matrica = (int **)malloc(*n * sizeof(int *)); //red
 	for (int i = 0; i < *n; i++)
 		matrica[i] = (int *)malloc(*n * sizeof(int)); //stupac
