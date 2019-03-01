@@ -48,14 +48,10 @@ void pointer_na_pointer(int * A, int * B, const int * n) {
 
 int main() {
 
-	int time();
-	srand(time(NULL));
-
 	int A = 0;
 	int B = 0;
-	int c = '0';
-
 	int n = 0;
+	
 	scanf_s("%d", &n);
 
 	//jedan_pointer(&A, &B, &n);
