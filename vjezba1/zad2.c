@@ -48,7 +48,6 @@ void moj_search_sort(int *broj, int *razlika, int *brojac, int *broj_brojeva_u_l
 				if (lista_brojeva[j] == *broj)
 					++*brojac;
 	}
-
 }
 
 
@@ -67,11 +66,11 @@ int main() {
 		scanf_s("%d", &lista_brojeva[i]);
 
 	//pomocu_bsearch(&broj, &razlika, &brojac, &broj_brojeva_u_listi, lista_brojeva);
-
 	moj_search_sort(&broj, &razlika, &brojac, &broj_brojeva_u_listi, lista_brojeva);
 	
 	free(lista_brojeva);
 	printf("%d", brojac);
+	
 	getchar();
 	getchar();
 
