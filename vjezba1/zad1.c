@@ -2,7 +2,8 @@
 #include <stdlib.h>
 
 void jedan_pointer(int * A, int * B, const int * n) {
-
+	
+	//alokacija pomocu jednog pointera -> memorija se puni slijedno
 	int *matrica = (int *)malloc(*n * *n * sizeof(int));
 
 	//punjenje matrice - upis
@@ -20,6 +21,7 @@ void jedan_pointer(int * A, int * B, const int * n) {
 
 void pointer_na_pointer(int * A, int * B, const int * n) {
 
+	//alokacija pomocu dva pointera (pointer na pointer)
 	int **matrica = (int **)malloc(*n * sizeof(int *)); //red
 	for (int i = 0; i < *n; i++)
 		matrica[i] = (int *)malloc(*n * sizeof(int)); //stupac
