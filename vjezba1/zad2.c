@@ -57,7 +57,6 @@ int main() {
 			printf("mora biti 1<N<10000 i 1<K<100\n");
 	} while (1);
 
-
 	int *lista_brojeva = malloc(items * sizeof(int));
 
 	for (int i = 0; i < items; i++)
