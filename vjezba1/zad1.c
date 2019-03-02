@@ -1,68 +1,66 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int cmpfunc(const void * a, const void * b) {
-	return (*(int*)a - *(int*)b); //type cast jer je void pointer
+void jedan_pointer(int * A, int * B, const int * n) {
+
+	int *matrica = (int *)malloc(*n * *n * sizeof(int));
+
+	//punjenje matrice - upis
+	for (int i = 0; i < *n * *n; i++)
+		scanf_s("%d", &matrica[i]);
+
+	//zbrajanje dijagonala -> kod jednog pointera
+	for (int i = 0; i < *n; i++) {
+		*A += matrica[i * *n + i];
+		*B += matrica[i * *n + (*n - i - 1)];
+	}
+
+	free(matrica);
 }
 
-void bsearch_(int *broj_koji_trazim, const int *razlika, int *brojac, const int *items, int *lista_brojeva) {
+void pointer_na_pointer(int * A, int * B, const int * n) {
 
-	qsort(lista_brojeva, *items, sizeof(int), cmpfunc);
+	int **matrica = (int **)malloc(*n * sizeof(int *)); //red
+	for (int i = 0; i < *n; i++)
+		matrica[i] = (int *)malloc(*n * sizeof(int)); //stupac
 
-	for (int i = 0; i < *items; i++) {
-		*broj_koji_trazim = lista_brojeva[i] + *razlika;
-		if (bsearch(broj_koji_trazim, lista_brojeva, *items, sizeof(int), cmpfunc) > 0)
-			++*brojac;
+	//punjenje matrice - upis 
+	for (int i = 0; i < *n; i++)
+		for (int j = 0; j < *n; j++)
+			scanf_s("%d", &matrica[i][j]);
+
+	//zbrajanje dijagonala 
+	for (int i = 0; i < *n; i++)
+		*A += matrica[i][i];
+	for (int i = 0, j = *n - 1; i < *n; i++, j--)
+		*B += matrica[i][j];
+
+	//free
+	for (int i = 0; i < n; ++i) {
+		free(matrica[i]);
 	}
-}
 
-void sort_search(int *broj_koji_trazim, const int *razlika, int *brojac, const int *items, int *lista_brojeva) {
-
-	//bubble sort
-	int swap = 0;
-	for (int i = 0; i < *items; i++) {
-		for (int j = i; j < *items; j++)
-			if (lista_brojeva[j] < lista_brojeva[i]) {
-				swap = lista_brojeva[i];
-				lista_brojeva[i] = lista_brojeva[j];
-				lista_brojeva[j] = swap;
-			}
-	}
-	
-	for (int i = 0; i < *items; i++)
-		printf("%d ", lista_brojeva[i]);
-	putchar('\n');
-	
-	//search
-	for (int i = 0; i < *items; i++) {
-		*broj_koji_trazim = lista_brojeva[i] + *razlika;
-			for (int j = i + 1; j < *items; j++)
-				if (lista_brojeva[j] == *broj_koji_trazim)
-					++*brojac;
-	}
+	free(matrica);
 }
 
 int main() {
 
-	int items = 0;
-	int razlika = 0;
-	int brojac = 0;
-	int broj_koji_trazim = 0;
-
-	scanf_s("%d %d", &items, &razlika);
-
-	int *lista_brojeva = malloc(items * sizeof(int));
-
-	for (int i = 0; i < items; i++)
-		scanf_s("%d", &lista_brojeva[i]);
-
-	//pomocu_bsearch(&broj, &razlika, &brojac, &broj_brojeva_u_listi, lista_brojeva);
-	sort_search(&broj_koji_trazim, &razlika, &brojac, &items, lista_brojeva);
+	int A = 0;
+	int B = 0;
+	int n = 0;
 	
-	free(lista_brojeva);
-	printf("%d", brojac);
+	scanf_s("%d", &n);
+
+	//jedan_pointer(&A, &B, &n);
+	pointer_na_pointer(&A, &B, &n);
+	
+	printf("%d\n", A - B);
+	
+	if (A - B == 0)
+		printf("Matrica je najljepsa");
+	else
+		printf("Matrica nije najljepsa");
 
 	getchar();
 	getchar();
-
 }
