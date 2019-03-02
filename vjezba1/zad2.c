@@ -56,13 +56,14 @@ int main() {
 	for (int i = 0; i < items; i++)
 		scanf_s("%d", &lista_brojeva[i]);
 
-	//pomocu_bsearch(&broj, &razlika, &brojac, &broj_brojeva_u_listi, lista_brojeva);
-	sort_search(&broj_koji_trazim, &razlika, &brojac, &items, lista_brojeva);
+	//void(*p)(int *, int *, int *, int *, int *) = bsearch_;
+	void(*p)(int *, int *, int *, int *, int *) = sort_search;
+
+	p(&broj_koji_trazim, &razlika, &brojac, &items, lista_brojeva);
 	
 	free(lista_brojeva);
 	printf("%d", brojac);
 
 	getchar();
 	getchar();
-
 }
