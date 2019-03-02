@@ -36,7 +36,7 @@ void pointer_na_pointer(int * A, int * B, const int * n) {
 		*B += matrica[i][j];
 
 	//free
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < *n; ++i) {
 		free(matrica[i]);
 	}
 
@@ -51,8 +51,10 @@ int main() {
 	
 	scanf_s("%d", &n);
 
-	//jedan_pointer(&A, &B, &n);
-	pointer_na_pointer(&A, &B, &n);
+	//void(*p)(int*, int*, int*) = jedan_pointer;
+	void(*p)(int*, int*, int*) = pointer_na_pointer;
+
+	p(&A, &B, &n);
 	
 	printf("%d\n", A - B);
 	
