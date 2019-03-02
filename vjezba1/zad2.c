@@ -1,35 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//void * pointer moze biti bilo sto, ne moze biti dereferencirano
-//za dereferenciranje mora se castati sa (int*) 
-
 int cmpfunc(const void * a, const void * b) {
 	return (*(int*)a - *(int*)b); //type cast jer je void pointer
 }
 
-void pomocu_bsearch(int *broj, int *razlika, int *brojac, int *broj_brojeva_u_listi,int *lista_brojeva) {
-	qsort(lista_brojeva, *broj_brojeva_u_listi, sizeof(int), cmpfunc);
+void bsearch_(int *broj_koji_trazim, int *razlika, int *brojac, int *items,int *lista_brojeva) {
 
-	// 5 2
-	// 1 2 3 5 7
-	// razlika = 2
-	// trazimo razliku + lista_brojeva[i] u cijeloj listi brojeva
+	qsort(lista_brojeva, *items, sizeof(int), cmpfunc);
 
-	for (int i = 0; i < *broj_brojeva_u_listi; i++) {
-		*broj = lista_brojeva[i] + *razlika;
-		if (bsearch(broj, lista_brojeva, *broj_brojeva_u_listi, sizeof(int), cmpfunc) > 0)
+	for (int i = 0; i < *items; i++) {
+		*broj_koji_trazim = lista_brojeva[i] + *razlika;
+		if (bsearch(broj_koji_trazim, lista_brojeva, *items, sizeof(int), cmpfunc) > 0)
 			++*brojac;
 	}
-
 }
 
-void moj_search_sort(int *broj, int *razlika, int *brojac, int *broj_brojeva_u_listi, int *lista_brojeva) {
+void sort_search(int *broj_koji_trazim, int *razlika, int *brojac, int *items, int *lista_brojeva) {
 
 	//bubble sort
 	int swap = 0;
-	for (int i = 0; i < *broj_brojeva_u_listi; i++) {
-		for (int j = i; j < *broj_brojeva_u_listi; j++)
+	for (int i = 0; i < *items; i++) {
+		for (int j = i; j < *items; j++)
 			if (lista_brojeva[j] < lista_brojeva[i]) {
 				swap = lista_brojeva[i];
 				lista_brojeva[i] = lista_brojeva[j];
@@ -37,40 +29,39 @@ void moj_search_sort(int *broj, int *razlika, int *brojac, int *broj_brojeva_u_l
 			}
 	}
 	
-	//for (int i = 0; i < *broj_brojeva_u_listi; i++)
-	//	printf("%d ", lista_brojeva[i]);
-	//putchar('\n');
+	for (int i = 0; i < *items; i++)
+		printf("%d ", lista_brojeva[i]);
+	putchar('\n');
 	
 	//search
-	for (int i = 0; i < *broj_brojeva_u_listi; i++) {
-		*broj = lista_brojeva[i] + *razlika;
-			for (int j = 1; j < *broj_brojeva_u_listi; j++)
-				if (lista_brojeva[j] == *broj)
+	for (int i = 0; i < *items; i++) {
+		*broj_koji_trazim = lista_brojeva[i] + *razlika;
+			for (int j = i + 1; j < *items; j++)
+				if (lista_brojeva[j] == *broj_koji_trazim)
 					++*brojac;
 	}
 }
 
-
 int main() {
 
-	int broj_brojeva_u_listi = 0;
+	int items = 0;
 	int razlika = 0;
 	int brojac = 0;
-	int broj = 0;
+	int broj_koji_trazim = 0;
 
-	scanf_s("%d %d", &broj_brojeva_u_listi, &razlika);
+	scanf_s("%d %d", &items, &razlika);
 
-	int *lista_brojeva = malloc(broj_brojeva_u_listi * sizeof(int));
+	int *lista_brojeva = malloc(items * sizeof(int));
 
-	for (int i = 0; i < broj_brojeva_u_listi; i++)
+	for (int i = 0; i < items; i++)
 		scanf_s("%d", &lista_brojeva[i]);
 
 	//pomocu_bsearch(&broj, &razlika, &brojac, &broj_brojeva_u_listi, lista_brojeva);
-	moj_search_sort(&broj, &razlika, &brojac, &broj_brojeva_u_listi, lista_brojeva);
+	sort_search(&broj_koji_trazim, &razlika, &brojac, &items, lista_brojeva);
 	
 	free(lista_brojeva);
 	printf("%d", brojac);
-	
+
 	getchar();
 	getchar();
 
