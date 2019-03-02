@@ -49,7 +49,14 @@ int main() {
 	int brojac = 0;
 	int broj_koji_trazim = 0;
 
-	scanf_s("%d %d", &items, &razlika);
+	do {
+		scanf_s("%d %d", &items, &razlika);
+		if ((items > 1 && items < 10000) && (razlika > 1 && razlika < 100))
+			break;
+		else
+			printf("mora biti 1<N<10000 i 1<K<100\n");
+	} while (1);
+
 
 	int *lista_brojeva = malloc(items * sizeof(int));
 
