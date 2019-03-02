@@ -5,7 +5,7 @@ int cmpfunc(const void * a, const void * b) {
 	return (*(int*)a - *(int*)b); //type cast jer je void pointer
 }
 
-void bsearch_(int *broj_koji_trazim, int *razlika, int *brojac, int *items,int *lista_brojeva) {
+void bsearch_(int *broj_koji_trazim, const int *razlika, int *brojac, const int *items, int *lista_brojeva) {
 
 	qsort(lista_brojeva, *items, sizeof(int), cmpfunc);
 
@@ -16,7 +16,7 @@ void bsearch_(int *broj_koji_trazim, int *razlika, int *brojac, int *items,int *
 	}
 }
 
-void sort_search(int *broj_koji_trazim, int *razlika, int *brojac, int *items, int *lista_brojeva) {
+void sort_search(int *broj_koji_trazim, const int *razlika, int *brojac, const int *items, int *lista_brojeva) {
 
 	//bubble sort
 	int swap = 0;
