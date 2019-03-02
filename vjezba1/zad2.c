@@ -29,9 +29,9 @@ void sort_search(int *broj_koji_trazim, const int *razlika, int *brojac, const i
 			}
 	}
 	
-	for (int i = 0; i < *items; i++)
-		printf("%d ", lista_brojeva[i]);
-	putchar('\n');
+	//for (int i = 0; i < *items; i++)
+	//	printf("%d ", lista_brojeva[i]);
+	//putchar('\n');
 	
 	//search
 	for (int i = 0; i < *items; i++) {
