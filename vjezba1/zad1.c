@@ -21,7 +21,7 @@ void jedan_pointer(int * A, int * B, const int * n) {
 
 void pointer_na_pointer(int * A, int * B, const int * n) {
 
-	//alokacija pomocu dva pointera (pointer na pointer)
+	//alokacija pomocu dva pointera (pointer na pointer) -> svaki red se alocira posebno
 	int **matrica = (int **)malloc(*n * sizeof(int *)); //red
 	for (int i = 0; i < *n; i++)
 		matrica[i] = (int *)malloc(*n * sizeof(int)); //stupac
@@ -37,7 +37,7 @@ void pointer_na_pointer(int * A, int * B, const int * n) {
 	for (int i = 0, j = *n - 1; i < *n; i++, j--)
 		*B += matrica[i][j];
 
-	//free
+	//free -> svaki red se oslobadja posebno
 	for (int i = 0; i < *n; ++i) {
 		free(matrica[i]);
 	}
