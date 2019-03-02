@@ -3,9 +3,6 @@
 
 void jedan_pointer(int * A, int * B, const int * n) {
 
-	//memorija se puni slijedno -> alokacija pomocu jednog pointera (primjer je za n=2)
-	//	|_|_|_|_| |_|_|_|_|	|_|_|_|_| |_|_|_|_| -> 4 * int (4 * 4 bajta)
-
 	int *matrica = (int *)malloc(*n * *n * sizeof(int));
 
 	//punjenje matrice - upis
@@ -38,6 +35,11 @@ void pointer_na_pointer(int * A, int * B, const int * n) {
 	for (int i = 0, j = *n - 1; i < *n; i++, j--)
 		*B += matrica[i][j];
 
+	//free
+	for (int i = 0; i < n; ++i) {
+		free(matrica[i]);
+	}
+
 	free(matrica);
 }
 
@@ -58,7 +60,7 @@ int main() {
 		printf("Matrica je najljepsa");
 	else
 		printf("Matrica nije najljepsa");
-	getchar();
-	getchar();
 
+	getchar();
+	getchar();
 }
