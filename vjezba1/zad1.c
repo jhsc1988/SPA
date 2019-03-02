@@ -9,7 +9,7 @@ void jedan_pointer(int * A, int * B, const int * n) {
 	for (int i = 0; i < *n * *n; i++)
 		scanf_s("%d", &matrica[i]);
 
-	//zbrajanje dijagonala -> kod jednog pointera
+	//zbrajanje dijagonala
 	for (int i = 0; i < *n; i++) {
 		*A += matrica[i * *n + i];
 		*B += matrica[i * *n + (*n - i - 1)];
