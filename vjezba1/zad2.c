@@ -22,16 +22,16 @@ void sort_search(int *broj_koji_trazim, const int *razlika, int *brojac, const i
 	int swap = 0;
 	for (int i = 0; i < *items; i++) {
 		for (int j = i; j < *items; j++)
-			if (lista_brojeva[j] < lista_brojeva[i]) {
+			if (lista_brojeva[j] > lista_brojeva[i]) { // < ascending; > descending
 				swap = lista_brojeva[i];
 				lista_brojeva[i] = lista_brojeva[j];
 				lista_brojeva[j] = swap;
 			}
 	}
 	
-	//for (int i = 0; i < *items; i++)
-	//	printf("%d ", lista_brojeva[i]);
-	//putchar('\n');
+	for (int i = 0; i < *items; i++)
+		printf("%d ", lista_brojeva[i]);
+	putchar('\n');
 	
 	//search
 	for (int i = 0; i < *items; i++) {
