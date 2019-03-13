@@ -17,10 +17,9 @@ unsigned int * random(unsigned int vrhovi[], int n) {
 //O(log(n))
 unsigned int binarna_pretraga(unsigned int vrhovi[], int min, int max) {
 
-	static int key = 0;
+	int key = (min + max) / 2;
 
 	while (min <= max) {
-		key = (min + max) / 2;
 
 		if (vrhovi[key - 1] < vrhovi[key] && vrhovi[key + 1] < vrhovi[key])
 			return vrhovi[key];
@@ -35,6 +34,8 @@ unsigned int binarna_pretraga(unsigned int vrhovi[], int min, int max) {
 
 int main() {
 
+	srand((int)time(0));
+	
 	int n = 0;
 
 	do {
