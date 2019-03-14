@@ -3,12 +3,12 @@
 #include <time.h>
 
 //random f-ja -> punim niz vrhova
-unsigned int * random(unsigned int vrhovi[], int n) {
+unsigned int * random(unsigned int *vrhovi, int n) {
 
-	while (n--) {	
+	for (int i = 0; i < n; i++) {
 		//rand() % (max - min + 1) + min;
-		vrhovi[n] = (int)(rand() % (1000 - 1 + 1) + 1);
-		printf("%d ", vrhovi[n]);
+		vrhovi[i] = (int)(rand() % (1000 - 1 + 1) + 1);
+		printf("%d ", vrhovi[i]);
 	}
 
 	return vrhovi;
@@ -17,7 +17,7 @@ unsigned int * random(unsigned int vrhovi[], int n) {
 //O(log(n))
 unsigned int binarna_pretraga(unsigned int vrhovi[], int min, int max) {
 
-	int key = (min + max) / 2;
+	int key = (int)(min + max) / 2;
 
 	while (min <= max) {
 
@@ -49,11 +49,11 @@ int main() {
 	} while (1);
 
 	unsigned int *vrhovi = (unsigned int *)malloc(n * sizeof(unsigned int));
-	vrhovi = random(vrhovi, n);
 	
-	printf("%d", binarna_pretraga(vrhovi, 0, n - 1));
+	printf("%d", binarna_pretraga(random(vrhovi, n), 0, n - 1));
 	getchar();
 	getchar();
 
+	free(vrhovi);
 	return 0;
 }
