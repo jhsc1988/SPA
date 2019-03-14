@@ -17,17 +17,19 @@ unsigned int * random(unsigned int *vrhovi, int n) {
 //O(log(n))
 unsigned int binarna_pretraga(unsigned int vrhovi[], int min, int max) {
 
-	int key = (int)((min + max) / 2);
+	int key = (min + max) / 2;
 
-	if (min >= max)
-		return 0;
+	while (min <= max) {
 
-	if (vrhovi[key - 1] < vrhovi[key] && vrhovi[key + 1] < vrhovi[key])
-		return vrhovi[key];
-	else if (vrhovi[key - 1] > vrhovi[key] && vrhovi[key - 1] > vrhovi[key + 1])
-		return binarna_pretraga(vrhovi, min, key - 1);
-	else
-		return binarna_pretraga(vrhovi, key + 1, max);
+		if (vrhovi[key - 1] < vrhovi[key] && vrhovi[key] > vrhovi[key + 1])
+			return vrhovi[key];
+		else if (vrhovi[key + 1] < vrhovi[key - 1])
+			return binarna_pretraga(vrhovi, min, key - 1);
+		else if (vrhovi[key + 1] > vrhovi[key - 1])
+			return binarna_pretraga(vrhovi, key + 1, max);
+	}
+
+	return 0;
 }
 
 
@@ -49,7 +51,8 @@ int main() {
 
 	unsigned int *vrhovi = (unsigned int *)malloc(n * sizeof(unsigned int));
 	
-	printf("%d", binarna_pretraga(random(vrhovi, n), 0, n - 1));
+	printf("\n%d", binarna_pretraga(random(vrhovi, n), 0, n - 1));
+
 	getchar();
 	getchar();
 
