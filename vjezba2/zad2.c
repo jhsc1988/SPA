@@ -17,18 +17,17 @@ unsigned int * random(unsigned int *vrhovi, int n) {
 //O(log(n))
 unsigned int binarna_pretraga(unsigned int vrhovi[], int min, int max) {
 
-	int key = (int)(min + max) / 2;
+	int key = (int)((min + max) / 2);
 
-	while (min <= max) {
+	if (min >= max)
+		return 0;
 
-		if (vrhovi[key - 1] < vrhovi[key] && vrhovi[key + 1] < vrhovi[key])
-			return vrhovi[key];
-		else if (vrhovi[key - 1] > vrhovi[key])
-			return binarna_pretraga(vrhovi, min, key - 1);
-		else
-			return binarna_pretraga(vrhovi, key + 1, max);
-	}
-	return 0;
+	if (vrhovi[key - 1] < vrhovi[key] && vrhovi[key + 1] < vrhovi[key])
+		return vrhovi[key];
+	else if (vrhovi[key - 1] > vrhovi[key] && vrhovi[key - 1] > vrhovi[key + 1])
+		return binarna_pretraga(vrhovi, min, key - 1);
+	else
+		return binarna_pretraga(vrhovi, key + 1, max);
 }
 
 
