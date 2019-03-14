@@ -64,6 +64,7 @@ int main() {
 	getchar();
 	getchar();
 
+	free(niz);
 	return 0;
 }
 
