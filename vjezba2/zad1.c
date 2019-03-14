@@ -3,44 +3,42 @@
 #include <time.h>
 
 //random f-ja -> punim niz 
-float * random(float niz[], int n) {
+float * random(float *niz, int n) {
 
-	while (n--) {
+	for (int i = 0; i < n; i++) {
 
 		//dijelim sa 100 da bi dobio float u 2 decimale
-		niz[n] = (float)(rand() % 100) / 100;
-		printf("%f\n", niz[n]);
+		niz[i] = (float)(rand() % 100) / 100;
+		printf("%f\n", niz[i]);
 	}
 
 	return niz;
 }
 
+
 //trazim 3 najveca -> O(n)
-int max_3(float niz[], int n) {
+float max_3(float niz[], int n) {
 
 	float prvi = 0;
 	float drugi = 0;
 	float treci = 0;
 
 	for (int i = 0; i < n; i++) {
-		if (niz[i] > prvi)
+		if (niz[i] > prvi) {
+			treci = drugi;
+			drugi = prvi;
 			prvi = niz[i];
-	}
-
-	for (int i = 0; i < n; i++) {
-		if (niz[i] == prvi)
 			continue;
-		if (niz[i] > drugi)
+		}
+		if (niz[i] > drugi) {
+			treci = drugi;
 			drugi = niz[i];
-	}
-
-	for (int i = 0; i < n; i++) {
-		if (niz[i] == prvi)
 			continue;
-		if (niz[i] == drugi)
-			continue;
-		if (niz[i] > treci)
+		}
+		if (niz[i] > treci) {
 			treci = niz[i];
+			continue;
+		}
 	}
 
 	return prvi*drugi*treci;
@@ -61,9 +59,8 @@ int main() {
 	} while (1);
 
 	float *niz = (float *)malloc(n * sizeof(int));
-	niz = random(niz, n);
 
-	printf("%d",max_3(niz,n));
+	printf("%f",max_3(random(niz, n),n));
 	getchar();
 	getchar();
 
