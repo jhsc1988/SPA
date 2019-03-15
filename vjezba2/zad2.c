@@ -36,10 +36,8 @@ int main() {
 
 	do {
 		scanf_s("%d", &n);
-		if (2 < n && n < 10000)
-			break;
-		else
-			printf("mora biti 1 < N < 10000\n");
+		if (2 < n && n < 10000) break;
+		else printf("mora biti 1 < N < 10000\n");
 	} while (1);
 
 	unsigned int *vrhovi = (unsigned int *)malloc(n * sizeof(unsigned int));
