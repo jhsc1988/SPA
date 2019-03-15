@@ -38,11 +38,11 @@ int main() {
 		else printf("mora biti 1 < N < 10000\n");
 	} while (1);
 	getchar();
+
 	unsigned int *vrhovi = (unsigned int *)malloc(n * sizeof(unsigned int));
+
 	do {
-		
 		printf(" --> %d\n", binarna_pretraga(random(vrhovi, n), 0, n - 1));
-		//printf(" --> %d\n", pretraga(random(vrhovi, n), 0, n - 1, (n-1)/2));
 		getchar();
 	} while (1);
 
