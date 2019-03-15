@@ -2,10 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 
-//random f-ja -> punim niz vrhova
+//random f-ja -> punim niz vrhova:
 unsigned int * random(unsigned int *vrhovi, int n) {
 	for (int i = 0; i < n; i++) {
-
 		//rand() % (max - min + 1) + min;
 		vrhovi[i] = (int)(rand() % 1000 + 1);
 		printf("%d ", vrhovi[i]);
@@ -13,11 +12,10 @@ unsigned int * random(unsigned int *vrhovi, int n) {
 	return vrhovi;
 }
 
-//O(log(n)) -> za ovaj problem binarna pretraga nije optimalno rjesenje
+//O(log(n)) -> za ovaj problem binarna pretraga nije optimalno rjesenje:
 unsigned int binarna_pretraga(unsigned int vrhovi[], int low, int high) {
 	int mid = (low + high) / 2;
-
-	//sprjecava prekoracenje rubnih tocki
+	//sprjecava prekoracenje rubnih tocki:
 	if (!(low <= high))
 		return -1; //rub
 
@@ -31,7 +29,6 @@ unsigned int binarna_pretraga(unsigned int vrhovi[], int low, int high) {
 
 int main() {
 	srand((int)time(0));
-
 	int n = 0;
 
 	do {
