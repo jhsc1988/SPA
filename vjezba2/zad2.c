@@ -36,7 +36,6 @@ int main() {
 
 	do {
 		scanf_s("%d", &n);
-
 		if (2 < n && n < 10000)
 			break;
 		else
@@ -44,7 +43,6 @@ int main() {
 	} while (1);
 
 	unsigned int *vrhovi = (unsigned int *)malloc(n * sizeof(unsigned int));
-
 	do {
 		printf("\n%d\n", binarna_pretraga(random(vrhovi, n), 0, n - 1));
 		getchar();
