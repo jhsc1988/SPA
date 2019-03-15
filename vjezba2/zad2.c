@@ -19,10 +19,11 @@ unsigned int binarna_pretraga(unsigned int vrhovi[], int low, int high) {
 	if (!(low <= high))
 		return -1; //rub
 
-	if (vrhovi[mid] > vrhovi[mid + 1])
+	if (vrhovi[mid] > vrhovi[mid + 1]) {
 		if (vrhovi[mid] > vrhovi[mid - 1])
 			return vrhovi[mid];
-	if (vrhovi[mid + 1] < vrhovi[mid - 1])
+	}
+	if (vrhovi[mid] < vrhovi[mid - 1])
 		return binarna_pretraga(vrhovi, low, mid - 1);
 	return binarna_pretraga(vrhovi, mid + 1, high);
 }
@@ -36,10 +37,12 @@ int main() {
 		if (2 < n && n < 10000) break;
 		else printf("mora biti 1 < N < 10000\n");
 	} while (1);
-
+	getchar();
 	unsigned int *vrhovi = (unsigned int *)malloc(n * sizeof(unsigned int));
 	do {
-		printf("\n%d\n", binarna_pretraga(random(vrhovi, n), 0, n - 1));
+		
+		printf(" --> %d\n", binarna_pretraga(random(vrhovi, n), 0, n - 1));
+		//printf(" --> %d\n", pretraga(random(vrhovi, n), 0, n - 1, (n-1)/2));
 		getchar();
 	} while (1);
 
