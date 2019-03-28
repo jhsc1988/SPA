@@ -27,6 +27,6 @@ int main() {
 	int niz[12] = { 3, 4, 4, 6, 2, 8, 6, 9, 7, 3, 1, 4 }; // 15
 	int memo[12]; // pomocni niz za dp (memoizacija)
 
-	printf_s("%d", trazim_value(niz, dp, sizeof(niz) / sizeof(int)));
+	printf_s("%d", trazim_value(niz, memo, sizeof(niz) / sizeof(int)));
 	getchar();
 }
