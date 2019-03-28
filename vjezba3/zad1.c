@@ -3,7 +3,7 @@
 
 //trazim value pomocu dinamickog pogramiranja (dp)
 int trazim_value_dp(int* niz,int* memo, int N) {
-	int max = 0;
+	int best_value = 0;
 	memo[0] = niz[0];
 
 	for (int i = 1; i < N; i++) {
@@ -11,10 +11,10 @@ int trazim_value_dp(int* niz,int* memo, int N) {
 			memo[i] = niz[i];
 		else
 			memo[i] = memo[i - 1] + niz[i];
-		if (memo[i] > max)
-			max = memo[i];
+		if (memo[i] > best_value)
+			best_value = memo[i];
 	}	
-	return max;
+	return best_value;
 }
 
 ///trazim max value bez dinamickog programiranja - pomocu 2 varijable (var)
