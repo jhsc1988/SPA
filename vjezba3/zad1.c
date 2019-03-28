@@ -38,7 +38,7 @@ int main() {
 	//int niz[18] = { 9, 2, 3, 5, -7, -6, 5, -8, 8, -7, 2, -3, 1, -3, -4, 1, -5, -6 };
 	//int niz[12] = { 3, 4, 4, 6, 2 ,8 ,6 ,9, 7, 3, 1, 4 };
 	int niz[8] = { -2, -3, 4, -1, -2, 1, 5, -3 }; //7
-	int memo[8] = { 0 }; //pomocni niz za dp
+	int memo[8] = { 0 }; //pomocni niz za dp (memoizacija)
 
 	//printf_s("%d", trazim_value_var(niz, sizeof(niz) / sizeof(int)));
 	printf_s("%d", trazim_value_dp(niz, memo, sizeof(niz)/sizeof(int)));
