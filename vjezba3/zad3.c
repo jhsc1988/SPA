@@ -11,7 +11,6 @@ int skolica_shortest(int n){
 
 	while (n > 1) {
 		mod = n % 3;
-
 		switch (mod) {
 			// ako je djeljiv skacem na broj n / 3:
 		case 0: n /= 3; brojac_skokova++; break;
@@ -26,13 +25,12 @@ int skolica_shortest(int n){
 
 //ista logika kao prethodna samo pomocu dp
 int skolica_shortest_dp(int* memo, int n){
+	int mod = 0;
 	memo[0] = 0;
 	memo[1] = 1;
-	int mod = 0;
 
 	for (int i = 2, m = i + 1; i < n; i++, m++) {
 		mod = m % 3;
-
 		switch (mod){
 		case 0: memo[i] = memo[(m / 3) - 1] + 1; continue;		
 		case 1: memo[i] = memo[i - 1] + 1; continue;	
