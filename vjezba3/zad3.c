@@ -13,14 +13,11 @@ int skolica_shortest(int n){
 		mod = n % 3;
 
 		switch (mod) {
-
-			// ako je djeljiv skacem na broj n / 3
+			// ako je djeljiv skacem na broj n / 3:
 		case 0: n /= 3; brojac_skokova++; break;
-
-			// ako je % == 1 pomicem se jedan korak unazad do broja djeljivog sa 3
+			// ako je % == 1 pomicem se jedan korak unazad do broja djeljivog sa 3:
 		case 1: brojac_skokova++; n--; break;	
-
-			// ako je % == 2 pomicem se 2 koraka unazad do broja djeljivog sa 3
+			// ako je % == 2 pomicem se 2 koraka unazad do broja djeljivog sa 3:
 		case 2: brojac_skokova++; n -= 2;		
 		}
 	}
