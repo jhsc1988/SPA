@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// rjesenje bez dp - trazim visekratnik broja 3 
+// trazim visekratnik broja 3 
 // logika je da tezim broju koji ce napraviti najveci skok, a to je n / 3
 // pr. 9/3 = 3, dakle 9 -> 3 -> 1, pr. 10 % 3 = 1; 10 - 1 = 9; 9 % 3 = 0; 10 -> 9 -> 3 -> 1
 
@@ -13,9 +13,15 @@ int skolica_shortest(int n){
 		mod = n % 3;
 
 		switch (mod) {
-		case 0: n /= 3; brojac_skokova++; break; // ako je djeljiv skacem na broj n / 3
-		case 1: brojac_skokova++; n--; break;	 // ako je % == 1 pomicem se jedan korak unazad do broja djeljivog sa 3
-		case 2: brojac_skokova++; n -= 2;		 // ako je % == 2 pomicem se 2 koraka unazad do broja djeljivog sa 3
+
+			// ako je djeljiv skacem na broj n / 3
+		case 0: n /= 3; brojac_skokova++; break;
+
+			// ako je % == 1 pomicem se jedan korak unazad do broja djeljivog sa 3
+		case 1: brojac_skokova++; n--; break;	
+
+			// ako je % == 2 pomicem se 2 koraka unazad do broja djeljivog sa 3
+		case 2: brojac_skokova++; n -= 2;		
 		}
 	}
 	return brojac_skokova;	
@@ -31,10 +37,8 @@ int skolica_shortest_dp(int* memo, int n){
 		mod = m % 3;
 
 		switch (mod){
-		case 0: memo[i] = memo[(m / 3) - 1] + 1;
-			continue;		
-		case 1: memo[i] = memo[i - 1] + 1;
-			continue;	
+		case 0: memo[i] = memo[(m / 3) - 1] + 1; continue;		
+		case 1: memo[i] = memo[i - 1] + 1; continue;	
 		case 2: memo[i] = memo[i - 2] + 1; 
 		}		
 	}
