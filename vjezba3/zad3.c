@@ -17,7 +17,7 @@ int skolica_shortest(int n){
 			// ako je % == 1 pomicem se jedan korak unazad do broja djeljivog sa 3:
 		case 1: brojac_skokova++; n--; break;	
 			// ako je % == 2 pomicem se 2 koraka unazad do broja djeljivog sa 3:
-		case 2: brojac_skokova++; n -= 2;		
+		case 2: brojac_skokova += 2; n -= 2;		
 		}
 	}
 	return brojac_skokova;	
@@ -34,14 +34,14 @@ int skolica_shortest_dp(int* memo, int n){
 		switch (mod){
 		case 0: memo[i] = memo[(m / 3) - 1] + 1; continue;		
 		case 1: memo[i] = memo[i - 1] + 1; continue;	
-		case 2: memo[i] = memo[i - 2] + 1; 
+		case 2: memo[i] = memo[i - 2] + 2; 
 		}		
 	}
 	return memo[n - 1];
 }
 
 int main() {
-	int n = 3167;
+	int n = 157;
 	int* memo = calloc(n, n* sizeof(int)); //niz za memoizaciju
 
 	printf_s("bez dp: %d\n", skolica_shortest(n));
