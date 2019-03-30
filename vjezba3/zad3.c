@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
-// dp
-// memoizaciju koristim tako na svakom clanu niza pamtim najmanji broj koraka do prvog polja
-// nisam sretan kako izgleda kod
+// niz koristim tako na svakom clanu niza pamtim najmanji broj koraka do prvog polja
 int skolica_shortest(int* memo, int n) {
 	memo[0] = 0;
 	for (int i = 1; i < n; i++) {
