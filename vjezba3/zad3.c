@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 // niz koristim tako na svakom clanu niza pamtim najmanji broj koraka do prvog polja
+// ovo se moze rijesiti i s obicnim counterom
 int skolica_shortest(int* memo, int n) {
 	memo[0] = 0;
 	for (int i = 1; i < n; i++) {
