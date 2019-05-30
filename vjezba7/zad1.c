@@ -45,13 +45,13 @@ int shortest_path(int tlocrt[red][stupac]){
 		step_up = current->y - 1;
 		step = current->udaljenost + 1;
 
-		// korak dolje - gledam tlocrt, ako je tlocrt 0 i visited 0 position stavljam u queue
+		// korak dolje - gledam tlocrt, ako je tlocrt 0 position stavljam u queue
 		if (step_down < red && tlocrt[step_down][current->x] == 0) {
 
 			++position_index;
 
 			position[position_index].x = current->x;
-			position[position_index].y = step_down; // pomak slijedeće pozicije dolje
+			position[position_index].y = step_down; // pomak pozicije dolje
 			position[position_index].udaljenost = step;
 
 			tlocrt[position[position_index].y][position[position_index].x] = 1; // oznacavam mjesto na kojem sam bio
@@ -63,7 +63,7 @@ int shortest_path(int tlocrt[red][stupac]){
 
 			++position_index;
 
-			position[position_index].x = step_right; // pomak slijedeće pozicije desno
+			position[position_index].x = step_right; // pomak pozicije desno
 			position[position_index].y = current->y;
 			position[position_index].udaljenost = step;
 
@@ -77,7 +77,7 @@ int shortest_path(int tlocrt[red][stupac]){
 
 			++position_index;
 
-			position[position_index].x = step_left; // pomak slijedeće pozicije u lijevo
+			position[position_index].x = step_left; // pomak pozicije u lijevo
 			position[position_index].y = current->y;
 			position[position_index].udaljenost = step;
 
@@ -92,7 +92,7 @@ int shortest_path(int tlocrt[red][stupac]){
 			++position_index;
 
 			position[position_index].x = current->x;
-			position[position_index].y = step_up; // pomak slijedeće pozicije gore
+			position[position_index].y = step_up; // pomak pozicije gore
 			position[position_index].udaljenost = step;
 
 			tlocrt[position[position_index].y][position[position_index].x] = 1; // oznacavam mjesto na kojem sam bio
