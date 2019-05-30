@@ -13,12 +13,6 @@ struct point {
 };
 
 int shortest_path(int tlocrt[red][stupac]){
-
-	// visited array
-	int visited[red][stupac] = {0}; visited[0][0] = 1;
-	
-	// za spremanje x, y i udaljenost
-	struct point p; 
 	
 	// niz za sve cvorove
 	struct point position[red * stupac] = {0};
@@ -41,60 +35,69 @@ int shortest_path(int tlocrt[red][stupac]){
 	while (!queue_is_empty(path)) {
 
 		current = queue_dequeue(path);
-		p = *current;
 
-		if (p.x == stupac - 1 && p.y == red - 1)
-			return p.udaljenost;
+		if (current->x == stupac - 1 && current->y == red - 1)
+			return current->udaljenost;
 
-		// optimizacija za if
-		step_down = p.y + 1;
-		step_right = p.x + 1;
-		step_left = p.x - 1;
-		step_up = p.y - 1;
-		step = p.udaljenost + 1;
+		step_down = current->y + 1;
+		step_right = current->x + 1;
+		step_left = current->x - 1;
+		step_up = current->y - 1;
+		step = current->udaljenost + 1;
 
 		// korak dolje - gledam tlocrt, ako je tlocrt 0 i visited 0 position stavljam u queue
-		if (step_down < red && tlocrt[step_down][p.x] == 0 && visited[step_down][p.x] == 0) {
+		if (step_down < red && tlocrt[step_down][current->x] == 0) {
 
 			++position_index;
-			position[position_index].x = p.x;
-			position[position_index].y = step_down;
+
+			position[position_index].x = current->x;
+			position[position_index].y = step_down; // pomak slijedeće pozicije dolje
 			position[position_index].udaljenost = step;
-			visited[position[position_index].y][position[position_index].x] = 1;
-			queue_enqueue(path, &position[position_index]);
+
+			tlocrt[position[position_index].y][position[position_index].x] = 1; // oznacavam mjesto na kojem sam bio
+			queue_enqueue(path, &position[position_index]); // dodajem tu poziciju u queue
 		}
 		
 		// korak desno 
-		if (step_right < stupac && tlocrt[p.y][step_right] == 0 && visited[p.y][step_right] == 0) {
+		if (step_right < stupac && tlocrt[current->y][step_right] == 0) {
 
 			++position_index;
-			position[position_index].x = step_right;
-			position[position_index].y = p.y;
+
+			position[position_index].x = step_right; // pomak slijedeće pozicije desno
+			position[position_index].y = current->y;
 			position[position_index].udaljenost = step;
-			visited[position[position_index].y][position[position_index].x] = 1;
-			queue_enqueue(path, &position[position_index]);
+
+			tlocrt[position[position_index].y][position[position_index].x] = 1; // oznacavam mjesto na kojem sam bio
+
+			queue_enqueue(path, &position[position_index]); // dodajem tu poziciju u queue
 		}
 
 		// korak lijevo
-		if (step_left >= 0 && tlocrt[p.y][step_left] == 0 && visited[p.y][step_left] == 0) {
+		if (step_left >= 0 && tlocrt[current->y][step_left] == 0) {
 
 			++position_index;
-			position[position_index].x = step_left;
-			position[position_index].y = p.y;
+
+			position[position_index].x = step_left; // pomak slijedeće pozicije u lijevo
+			position[position_index].y = current->y;
 			position[position_index].udaljenost = step;
-			visited[position[position_index].y][position[position_index].x] = 1;
-			queue_enqueue(path, &position[position_index]);
+
+			tlocrt[position[position_index].y][position[position_index].x] = 1; // oznacavam mjesto na kojem sam bio
+
+			queue_enqueue(path, &position[position_index]); // dodajem tu poziciju u queue
 		}
 
 		// korak gore
-		if (step_up >= 0 && tlocrt[step_up][p.x] == 0 && visited[step_up][p.x] == 0) {
+		if (step_up >= 0 && tlocrt[step_up][current->x] == 0) {
 
 			++position_index;
-			position[position_index].x = p.x;
-			position[position_index].y = step_up;
+
+			position[position_index].x = current->x;
+			position[position_index].y = step_up; // pomak slijedeće pozicije gore
 			position[position_index].udaljenost = step;
-			visited[position[position_index].y][position[position_index].x] = 1;
-			queue_enqueue(path, &position[position_index]);
+
+			tlocrt[position[position_index].y][position[position_index].x] = 1; // oznacavam mjesto na kojem sam bio
+
+			queue_enqueue(path, &position[position_index]); // dodajem tu poziciju u queue
 		}
 	}
 	queue_delete(path);
