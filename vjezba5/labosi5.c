@@ -19,10 +19,10 @@ void free_all(struct node* bst) {
 	if (bst == NULL)
 		return;
 
-		free_all(bst->left);
-		free_all(bst->right);
+	free_all(bst->left);
+	free_all(bst->right);
 
-		free(bst);
+	free(bst);
 
 }
 
@@ -58,12 +58,12 @@ void bst_add(struct node** bst, struct book* books) {
 
 void inorder_print(struct node* root) {
 
-		if (!root)
-			return;
-		inorder_print(root->left);
-		printf("id: %d name: %s author: %s price: %d\n", root->book.id, root->book.name, root->book.author, root->book.price);
-		inorder_print(root->right);
+	if (!root)
 		return;
+	inorder_print(root->left);
+	printf("id: %d name: %s author: %s price: %d\n", root->book.id, root->book.name, root->book.author, root->book.price);
+	inorder_print(root->right);
+	return;
 }
 
 int main() {
@@ -107,7 +107,6 @@ int main() {
 	free_all((*bst));
 	
 		// 2. zadatak END
-
 
 	/* knjige su u trieu, ne trebaju nam vise kao zaseban niz */
 	//free(books);
