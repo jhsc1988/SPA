@@ -12,16 +12,14 @@ struct node {
 	struct book book;
 	struct node* left;
 	struct node* right;
+
 };
 
 void free_all(struct node* bst) {
 
-	if (bst == NULL)
-		return;
-
+	if (bst == NULL) return;
 	free_all(bst->left);
 	free_all(bst->right);
-
 	free(bst);
 
 }
@@ -29,41 +27,35 @@ void free_all(struct node* bst) {
 void bst_insert_data(struct node** bst, struct book* books) {
 
 	(*bst) = malloc(sizeof(struct node));
-	(*bst)->book.id = books->id;
-	strcpy((*bst)->book.name, books->name);
-	strcpy((*bst)->book.author, books->author);
-	(*bst)->book.price = books->price;
 
-	(*bst)->left = NULL;
-	(*bst)->right = NULL;
+	if ((*bst)) {
+		(*bst)->book.id = books->id;
+		strcpy((*bst)->book.name, books->name);
+		strcpy((*bst)->book.author, books->author);
+		(*bst)->book.price = books->price;
+		(*bst)->left = NULL;
+		(*bst)->right = NULL;
+	}
 }
 
 void bst_add(struct node** bst, struct book* books) {
 
 	while (1) {
 
-		if ((*bst)->book.id > books->id) {
-			bst = &(*bst)->left;
-		}
-		else if ((*bst)->book.id < books->id) {
-			bst = &(*bst)->right;
-		}
+		if ((*bst)->book.id > books->id) bst = &(*bst)->left;		
+		else if ((*bst)->book.id < books->id) bst = &(*bst)->right;
 		else return;
-		if ((*bst) == NULL) {
-			bst_insert_data(bst, books);
-		}	
+		if ((*bst) == NULL)	bst_insert_data(bst, books);
 	}
-	return;
 }
 
 void inorder_print(struct node* root) {
-
-	if (!root)
-		return;
+	
+	if (!root) return;
+	
 	inorder_print(root->left);
 	printf("id: %d name: %s author: %s price: %d\n", root->book.id, root->book.name, root->book.author, root->book.price);
 	inorder_print(root->right);
-	return;
 }
 
 int main() {
@@ -85,8 +77,7 @@ int main() {
 	for (i = 0; i < num_books; i++)
 		trie_insert_word(root, books[i].name);
 
-
-		// 2. zadatak
+	// 2. zadatak
 
 	// binary search tree
 	struct node** bst;
@@ -99,14 +90,12 @@ int main() {
 	}
 
 	// printam inorder
+	if (bst) inorder_print((*bst));
 
-	// free_all test
-	// printf("%d", (sizeof(struct node) * 265) / 1024);
-
-	inorder_print((*bst));
-	free_all((*bst));
+	// free_all 
+	if (bst) free_all((*bst));
 	
-		// 2. zadatak END
+	// 2. zadatak END
 
 	/* knjige su u trieu, ne trebaju nam vise kao zaseban niz */
 	//free(books);
