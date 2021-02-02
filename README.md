@@ -1,2 +1,2 @@
 # SPA @ VSiTE
-Jasmin Husić
+SPA vježbe 2019
